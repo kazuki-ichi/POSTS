@@ -1,0 +1,30 @@
+<div>
+  <ul>
+    <li><%= link_to "一覧に戻る", :posts %></li>
+    <li><%= link_to "編集", :edit_post %></li> 
+  </ul>
+</div>
+
+<h3>
+  <td><%= @post. title %></td>
+</h3>
+
+<table>
+  <tr>
+    <th>開始日</th>
+    <td><%= @post. start_date .to_s(:datetime_jp) %></td>
+  </tr>
+  <tr>
+    <th>終了日</th>
+    <td><%= @post. end_date .to_s(:datetime_jp) %></td>
+  </tr>
+  <tr>
+    <th>終日</th>
+    <td><% if @post.all_date %>○<% end %></td>
+  </tr>
+  <tr>
+    <th>スケジュールメモ</th>
+    <td><%= @post. schedule_memo %></td>
+  </tr>
+</table>
+

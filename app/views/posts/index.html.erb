@@ -1,5 +1,11 @@
 <h3>スケジュール管理アプリ</h3>
 
+<% if flash[:notice] %>
+   <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<p><%= link_to "新規追加", :new_post %></p>
+
 <table>
   <thead>
     <tr>
@@ -16,17 +22,26 @@
   </thead>
 
   <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.id %></td>
+      <td><%= post.title%></td>
+      <td><%= post.start_date.to_s(:datetime_jp) %></td> 
+      <td><%= post.end_date.to_s(:datetime_jp) %></td> 
+      <td><% if post.all_date %>○<% end %></td>
+      <td><%= post.updated_at.to_s(:datetime_hour_jp) %></td>
+      <td>
+        <%= link_to "詳細", post %>
+      </td>
+      <td>
+        <%= link_to "編集", [:edit, post] %> 
+      </td>
+      <td>
+        <%= link_to "削除", post, data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
+      </td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
+
 
